@@ -1,0 +1,13 @@
+[theme]
+
+
+base ='dark'
+
+# Primary accent color.
+primaryColor="rgba(10, 63, 65, 1)"
+
+# Background color of the app.
+backgroundColor = "rgba(6, 28, 66, 1)"
+
+secondaryBackgroundColor = "rgba(41, 58, 107, 1)"
+textColor= "rgb(255,255,255)"
