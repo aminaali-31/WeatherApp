@@ -20,6 +20,8 @@ if st.button("Submit"):
     if data is None:
         st.write("Error fetching data. Please check your connection.")
     else:
+            name= data['location']['name']
+            country=data['location']['country']
             main = data['current']['condition']['text']
             temp = data["current"]["temp_c"]
             feels = data["current"]["feelslike_c"]
@@ -27,6 +29,7 @@ if st.button("Submit"):
             wind = data["current"]["wind_mph"]
             visibility = data['current']['vis_km']
             icon_url = "https:"+data["current"]["condition"]["icon"]
+            st.subheader(f"Weather in {name}, {country}")
             st.image(icon_url)
             st.write('Weather Condition:', main)
             st.divider(width='stretch')
