@@ -38,3 +38,42 @@ if st.button("Submit"):
             col2.metric(label="Humidity (%)", value=f"{humidity} %",border=True)
             col3.metric(label="Wind Speed (m/s)", value=f"{wind} m/s",border=True)
             col4.metric(label="Visibility (km)", value=f"{visibility} km",border=True)
+            hours = data["forecast"]["forecastday"][0]["hour"]
+
+            st.markdown("""
+            <style>
+            .hour-scroll {
+                display: flex;  /*Aligns items in a row */
+                overflow-x: scroll; /*Allows horizontal scrolling if content overflows */
+                gap: 15px;
+                padding: 10px;
+            }
+            .hour-card {
+                min-width: 100px; /* sets maximum width of each card */
+                padding: 10px;
+                background: #1e1e1e;
+                color: white;
+                border-radius: 10px;
+                text-align: center;
+            }
+            .hour-card img {
+                width: 40px;
+            }
+            </style>
+            """, unsafe_allow_html=True)
+            html = '<div class="hour-scroll">'
+            for h in hours:
+                hour_label = h["time"].split(" ")[1]      # only HH:MM
+                temp_c = h["temp_c"]
+                icon = "https:" + h["condition"]["icon"]
+
+                html += f'<div class="hour-card">'
+                html += f'<p>{hour_label}</p>'
+                html += f'<img src="{icon}">'
+                html += f'<p>{temp_c}°C</p>'
+                html += '</div>'
+
+            html += '</div>'
+
+            st.markdown(html, unsafe_allow_html=True)
+
